@@ -1,0 +1,17 @@
+Version History
+
+-2.0 (20-Feb-2011)
+--First feature complete release
+--Added RubberBand functionality ( great for widgets with slow repaints )
+--The activateOn() function now can be called multiple times, i.e.
+  no need to create separate instances of this class for each window.
+--Added removeFrom() function to complimant activateOn().
+--Changed the name of the class ( prefixed "Nc" )
+
+-1.1 (11-Feb-2011)
+-- Removed the arrow pointer during Maximize/FullScreen
+
+-1.0 (02-Feb-2011)
+--Initial Public release
+
+End Version History
