@@ -18,7 +18,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-//Version 2.0
+//Version 3.0.0
 
 #ifndef NC_FRAMELESS_HELPER_H
 #define NC_FRAMELESS_HELPER_H
@@ -38,16 +38,16 @@ public:
   void removeFrom( QWidget* topLevelWidget );
 
   void setWidgetMovable( bool movable );
-  bool widgetMovable();
+  bool isWidgetMovable();
 
   void setWidgetResizable( bool resizable );
-  bool widgetResizable();
+  bool isWidgetResizable();
 
   void useRubberBandOnMove( bool use );
-  bool usingRubberBandOnMove();
+  bool isUsingRubberBandOnMove();
 
   void useRubberBandOnResize( bool use );
-  bool usingRubberBandOnResisze();
+  bool isUsingRubberBandOnResisze();
 
   //Make sure to leave the same content margins
   //around the widget as the newBorderWidth
