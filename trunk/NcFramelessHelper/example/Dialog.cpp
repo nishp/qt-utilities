@@ -25,7 +25,7 @@
 Dialog::Dialog(QWidget *parent) :
     QDialog(parent)
 {
-  setWindowTitle( "Frameless Window Helper - 2.0");
+  setWindowTitle( "Frameless Window Helper - 3.0.0");
 
   mFh = new NcFramelessHelper;
 
@@ -93,10 +93,10 @@ void Dialog::onCbFramelessToggled( bool on )
     mFh->removeFrom( mWidget );
   }
 
-  mCbWidgetMovable->setChecked(mFh->widgetMovable());
-  mCbWidgetResizable->setChecked(mFh->widgetResizable());
-  mCbUseRubberBandOnMove->setChecked(mFh->usingRubberBandOnMove());
-  mCbUseRubberBandOnResize->setChecked(mFh->usingRubberBandOnResisze());
+  mCbWidgetMovable->setChecked(mFh->isWidgetMovable());
+  mCbWidgetResizable->setChecked(mFh->isWidgetResizable());
+  mCbUseRubberBandOnMove->setChecked(mFh->isUsingRubberBandOnMove());
+  mCbUseRubberBandOnResize->setChecked(mFh->isUsingRubberBandOnResisze());
 
 }
 
