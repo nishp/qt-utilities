@@ -99,6 +99,7 @@ private:
   NcCursorPosCalculator mPressedMousePos;
   NcCursorPosCalculator mMoveMousePos;
   bool mCursorShapeChanged;
+  Qt::WindowFlags mWindowFlags;
 };
 
 
@@ -175,11 +176,43 @@ NcWidgetData::NcWidgetData( NcFramelessHelperImpl* _d, QWidget* topLevelWidget )
   mRubberBand = 0;
   mCursorShapeChanged = false;
 
+  mWindowFlags = mWidget->windowFlags();
+
+  //---from Qt docs of setWindowFlags()----
+  //Note: This function calls setParent() when
+  //changing the flags for a window, causing the
+  //widget to be hidden. You must call show()
+  //to make the widget visible again..
+
+  bool visible = mWidget->isVisible();
+
+  mWidget->setMouseTracking( true );
+  mWidget->setWindowFlags( Qt::CustomizeWindowHint|Qt::FramelessWindowHint );
+  //Bug fix, mouse move events does not propagate from child widgets.
+  //so need the hover events.
+  mWidget->setAttribute( Qt::WA_Hover );
+
   updateRubberBandStatus();
+
+  mWidget->setVisible( visible );
 }
 
 NcWidgetData::~NcWidgetData()
 {
+  //---from Qt docs of setWindowFlags()----
+  //Note: This function calls setParent() when
+  //changing the flags for a window, causing the
+  //widget to be hidden. You must call show()
+  //to make the widget visible again..
+
+  bool visible = mWidget->isVisible();
+
+  mWidget->setMouseTracking( false );
+  mWidget->setWindowFlags( mWindowFlags );//^  Qt::CustomizeWindowHint ^ Qt::FramelessWindowHint );
+  mWidget->setAttribute( Qt::WA_Hover, false );
+
+  mWidget->setVisible( visible );
+
   delete mRubberBand;
 }
 
@@ -506,25 +539,11 @@ void NcFramelessHelper::activateOn( QWidget* topLevelWidget )
   if ( d->mHashWidgetData.contains( topLevelWidget ) )
     return;
 
-  //---from Qt docs of setWindowFlags()----
-  //Note: This function calls setParent() when
-  //changing the flags for a window, causing the
-  //widget to be hidden. You must call show()
-  //to make the widget visible again..
-
-  bool visible = topLevelWidget->isVisible();
-
-  topLevelWidget->setMouseTracking( true );
-  topLevelWidget->setWindowFlags( topLevelWidget->windowFlags()|Qt::FramelessWindowHint );
-  //Bug fix, mouse move events does not propagate from child widgets.
-  //so need the hover events.
-  topLevelWidget->setAttribute( Qt::WA_Hover );
-  topLevelWidget->installEventFilter( this );
-
   NcWidgetData* data = new NcWidgetData( d, topLevelWidget );
   d->mHashWidgetData.insert( topLevelWidget, data );
 
-  topLevelWidget->setVisible( visible );
+  topLevelWidget->installEventFilter( this );
+
 }
 
 void NcFramelessHelper::removeFrom( QWidget* topLevelWidget )
@@ -532,22 +551,8 @@ void NcFramelessHelper::removeFrom( QWidget* topLevelWidget )
   NcWidgetData* data = d->mHashWidgetData.take( topLevelWidget );
   if ( data )
   {
-    //---from Qt docs of setWindowFlags()----
-    //Note: This function calls setParent() when
-    //changing the flags for a window, causing the
-    //widget to be hidden. You must call show()
-    //to make the widget visible again..
-
-    bool visible = topLevelWidget->isVisible();
-
-    topLevelWidget->setMouseTracking( false );
-    topLevelWidget->setWindowFlags( topLevelWidget->windowFlags()^Qt::FramelessWindowHint );
-    topLevelWidget->setAttribute( Qt::WA_Hover, false );
     topLevelWidget->removeEventFilter( this );
     delete data;
-
-    topLevelWidget->setVisible( visible );
-
   }
 }
 
@@ -556,7 +561,7 @@ void NcFramelessHelper::setWidgetMovable( bool movable )
   d->mWidgetMovable = movable;
 }
 
-bool NcFramelessHelper::widgetMovable()
+bool NcFramelessHelper::isWidgetMovable()
 {
   return d->mWidgetMovable;
 }
@@ -566,7 +571,7 @@ void NcFramelessHelper::setWidgetResizable( bool resizable )
   d->mWidgetResizable = resizable;
 }
 
-bool NcFramelessHelper::widgetResizable()
+bool NcFramelessHelper::isWidgetResizable()
 {
   return d->mWidgetResizable;
 }
@@ -580,7 +585,7 @@ void NcFramelessHelper::useRubberBandOnMove( bool use )
     list[i]->updateRubberBandStatus();
 }
 
-bool NcFramelessHelper::usingRubberBandOnMove()
+bool NcFramelessHelper::isUsingRubberBandOnMove()
 {
   return d->mUseRubberBandOnMove;
 }
@@ -594,7 +599,7 @@ void NcFramelessHelper::useRubberBandOnResize( bool use )
     list[i]->updateRubberBandStatus();
 }
 
-bool NcFramelessHelper::usingRubberBandOnResisze()
+bool NcFramelessHelper::isUsingRubberBandOnResisze()
 {
   return d->mUseRubberBandOnResize;
 }
