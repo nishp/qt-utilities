@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<!DOCTYPE VedicChartConfigs SYSTEM "VedicChartConfigs.dtd">
+<VedicChartConfigs>
+  <VedicChartConfig>
+    <Name>Default</Name>
+    <Description>Default</Description>
+  </VedicChartConfig>
+  <VedicChartConfig>
+    <Name>Double Frame</Name>
+    <OuterLineWidth>1</OuterLineWidth>
+    <DoubleOuterLine>true</DoubleOuterLine>
+    <UseTextColors>false</UseTextColors>
+  </VedicChartConfig>
+  <VedicChartConfig>
+    <Name>Minimal/No Frame</Name>
+    <OuterLineWidth>0</OuterLineWidth>
+  </VedicChartConfig>
+  <VedicChartConfig>
+    <Name>Colored Signs/No borders</Name>
+    <OuterLineWidth>0</OuterLineWidth>
+    <UseSignColors>true</UseSignColors>
+    <OuterLineWidth>0</OuterLineWidth>
+    <LineWidth>0</LineWidth>
+  </VedicChartConfig>
+  <VedicChartConfig>
+    <Name>Colored</Name>
+    <UseSignColors>true</UseSignColors>
+    <FgColor>black</FgColor>
+    <OuterLineWidth>2</OuterLineWidth>
+    <LineWidth>0</LineWidth>
+  </VedicChartConfig>
+  <VedicChartConfig>
+    <Name>Colored/Red Style</Name>
+    <UseSignColors>true</UseSignColors>
+    <OuterLineWidth>0</OuterLineWidth>
+    <SignBgColor>#de402b;#eaaaa2</SignBgColor>
+    <LineWidth>0</LineWidth>
+  </VedicChartConfig>
+  <VedicChartConfig>
+    <Name>Yellow</Name>
+    <BgColor>black</BgColor>
+    <TextColor>yellow</TextColor>
+    <FgColor>yellow</FgColor>
+    <MarkedFieldColor>blue</MarkedFieldColor>
+    <OuterLineWidth>3</OuterLineWidth>
+    <LineWidth>2</LineWidth>
+  </VedicChartConfig>
+  <VedicChartConfig>
+    <Name>Madera</Name>
+    <FgColor>white</FgColor>
+    <TextColor>white</TextColor>
+    <BgImage>madera.jpg</BgImage>
+    <LineWidth>3</LineWidth>
+    <OuterLineWidth>3</OuterLineWidth>
+  </VedicChartConfig>
+  <VedicChartConfig>
+    <Name>Too Big</Name>
+    <Description></Description>
+    <Extends>Yellow</Extends>
+    <BgColor>black</BgColor>
+    <OuterZodiac>108</OuterZodiac>
+  </VedicChartConfig>
+  <VedicChartConfig>
+    <Name>Wallpaper</Name>
+    <Description>A simple wallpaper</Description>
+    <Extends>Yellow</Extends>
+    <BgColor>black</BgColor>
+    <BgImage>wallpaper.jpg</BgImage>
+    <DoFloodFill>false</DoFloodFill>
+  </VedicChartConfig>
+  <VedicChartConfig>
+    <Name>Marble</Name>
+    <Extends>Yellow</Extends>
+    <BgImage>marble.jpg</BgImage>
+    <BgColor>black</BgColor>
+    <TextColor>black</TextColor>
+    <FgColor>black</FgColor>
+  </VedicChartConfig>
+  <VedicChartConfig>
+    <Name>Stars</Name>
+    <Extends>Yellow</Extends>
+    <MarkedFieldBrush>5</MarkedFieldBrush>
+    <MarkedFieldColor>blue</MarkedFieldColor>
+    <BgImage>stars.jpg</BgImage>
+  </VedicChartConfig>
+</VedicChartConfigs>
+

@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT PrintoutConfigs (PrintoutConfig)*>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT PrintoutConfig (Ashtakavarga|Sarvatobhadra|WesternChart|Dasa|VedicChartPair|ChartData|Pages|Description|Name|Uranian)*>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT Name (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT Description (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT Pages (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT ChartData (Style)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT Style (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT VedicChartPair (Varga2|Varga1)*>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT Varga1 (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT Varga2 (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT Dasa (DasaType)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT DasaType (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT WesternChart EMPTY>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT Uranian EMPTY>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT Sarvatobhadra EMPTY>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT Ashtakavarga EMPTY>
