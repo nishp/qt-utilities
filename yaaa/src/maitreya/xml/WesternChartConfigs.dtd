@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT WesternChartConfigs (WesternChartConfig)*>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT WesternChartConfig (HouseColor|PlanetColor|PaintHouseNumbers|Paint5DegCircle|SymbolType|OuterHouse|InnerHouse|PlanetMarkerLength|InnerAngleMarker|OuterAngleMarker|AspectRadius|PlanetRadius|OuterZodiac|ZodiacDegree5|ZodiacDegree1|InnerZodiac|Name|RotateSymbols|SymbolZoomFactor|BgColor|FgColor|CircleLineWidth|Description|BgImage|DoFloodFill|SignColor|PaintOuterHouseCircle|PaintInnerHouseCircle|Paint1DegCircle)*>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT Name (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT InnerZodiac (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT ZodiacDegree1 (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT ZodiacDegree5 (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT OuterZodiac (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT PlanetRadius (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT AspectRadius (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT OuterAngleMarker (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT InnerAngleMarker (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT PlanetMarkerLength (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT InnerHouse (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT OuterHouse (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT SymbolType (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT RotateSymbols (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT SymbolZoomFactor (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT BgColor (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT FgColor (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT CircleLineWidth (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT Description (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT BgImage (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT DoFloodFill (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT SignColor (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT PaintOuterHouseCircle (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT PaintInnerHouseCircle (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT Paint1DegCircle (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT Paint5DegCircle (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT PaintHouseNumbers (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT PlanetColor (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT HouseColor (#PCDATA)>

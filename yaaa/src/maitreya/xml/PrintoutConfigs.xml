@@ -1,0 +1,152 @@
+<?xml version="1.0"?>
+<!DOCTYPE PrintoutConfigs SYSTEM "PrintoutConfigs.dtd">
+<PrintoutConfigs>
+  <PrintoutConfig>
+    <Name>Vedic Default</Name>
+    <Description>Default Vedic printout with Rasi, Navamsa and Vimsottari Dasa</Description>
+    <Pages>1</Pages>
+    <ChartData>
+      <Style>2</Style>
+    </ChartData>
+    <VedicChartPair>
+      <Varga1>0</Varga1>
+      <Varga2>1</Varga2>
+    </VedicChartPair>
+    <Dasa>
+      <DasaType>0</DasaType>
+    </Dasa>
+  </PrintoutConfig>
+  <PrintoutConfig>
+    <Name>Western Default</Name>
+    <Description>Default Western printout with list of planets and western chart</Description>
+    <Pages>1</Pages>
+    <ChartData>
+      <Style>0</Style>
+    </ChartData>
+    <WesternChart/>
+  </PrintoutConfig>
+  <PrintoutConfig>
+    <Name>Vedic Comprehensive</Name>
+    <Description>Exhaustive Vedic printout. All Vargas, Vimsottari, Kalachakra and Yogini Dasa</Description>
+    <Pages>4</Pages>
+    <ChartData>
+      <Style>2</Style>
+    </ChartData>
+    <VedicChartPair>
+      <Varga1>0</Varga1>
+      <Varga2>1</Varga2>
+    </VedicChartPair>
+    <Dasa>
+      <DasaType>0</DasaType>
+    </Dasa>
+    <VedicChartPair>
+      <Varga1>2</Varga1>
+      <Varga2>3</Varga2>
+    </VedicChartPair>
+    <VedicChartPair>
+      <Varga1>4</Varga1>
+      <Varga2>5</Varga2>
+    </VedicChartPair>
+    <VedicChartPair>
+      <Varga1>6</Varga1>
+      <Varga2>7</Varga2>
+    </VedicChartPair>
+    <VedicChartPair>
+      <Varga1>8</Varga1>
+      <Varga2>9</Varga2>
+    </VedicChartPair>
+    <VedicChartPair>
+      <Varga1>10</Varga1>
+      <Varga2>11</Varga2>
+    </VedicChartPair>
+    <VedicChartPair>
+      <Varga1>12</Varga1>
+      <Varga2>13</Varga2>
+    </VedicChartPair>
+    <VedicChartPair>
+      <Varga1>14</Varga1>
+      <Varga2>15</Varga2>
+    </VedicChartPair>
+    <VedicChartPair>
+      <Varga1>16</Varga1>
+      <Varga2>17</Varga2>
+    </VedicChartPair>
+    <Dasa>
+      <DasaType>2</DasaType>
+    </Dasa>
+    <Dasa>
+      <DasaType>1</DasaType>
+    </Dasa>
+  </PrintoutConfig>
+  <PrintoutConfig>
+    <Name>Vedic Kp</Name>
+    <Description>Vedic printout with KP lords, Rasi, Navamsa and Vimsottari Dasa</Description>
+    <Pages>1</Pages>
+    <ChartData>
+      <Style>3</Style>
+    </ChartData>
+    <VedicChartPair>
+      <Varga1>0</Varga1>
+      <Varga2>1</Varga2>
+    </VedicChartPair>
+    <Dasa>
+      <DasaType>0</DasaType>
+    </Dasa>
+  </PrintoutConfig>
+  <PrintoutConfig>
+    <Name>Vedic Comprehensive/KP</Name>
+    <Description>Exhaustive Vedic printout in KP style. All Vargas, Vimsottari, Kalachakra and Yogini Dasa</Description>
+    <Pages>4</Pages>
+    <ChartData>
+      <Style>3</Style>
+    </ChartData>
+    <VedicChartPair>
+      <Varga1>0</Varga1>
+      <Varga2>1</Varga2>
+    </VedicChartPair>
+    <Dasa>
+      <DasaType>0</DasaType>
+    </Dasa>
+    <VedicChartPair>
+      <Varga1>2</Varga1>
+      <Varga2>3</Varga2>
+    </VedicChartPair>
+    <VedicChartPair>
+      <Varga1>4</Varga1>
+      <Varga2>5</Varga2>
+    </VedicChartPair>
+    <VedicChartPair>
+      <Varga1>6</Varga1>
+      <Varga2>7</Varga2>
+    </VedicChartPair>
+    <VedicChartPair>
+      <Varga1>8</Varga1>
+      <Varga2>9</Varga2>
+    </VedicChartPair>
+    <VedicChartPair>
+      <Varga1>10</Varga1>
+      <Varga2>11</Varga2>
+    </VedicChartPair>
+    <VedicChartPair>
+      <Varga1>12</Varga1>
+      <Varga2>13</Varga2>
+    </VedicChartPair>
+    <VedicChartPair>
+      <Varga1>14</Varga1>
+      <Varga2>15</Varga2>
+    </VedicChartPair>
+    <VedicChartPair>
+      <Varga1>16</Varga1>
+      <Varga2>17</Varga2>
+    </VedicChartPair>
+    <Dasa>
+      <DasaType>2</DasaType>
+    </Dasa>
+    <Dasa>
+      <DasaType>1</DasaType>
+    </Dasa>
+  </PrintoutConfig>
+</PrintoutConfigs>
+
+
+

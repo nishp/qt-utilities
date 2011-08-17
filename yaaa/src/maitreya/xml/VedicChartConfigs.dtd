@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT VedicChartConfigs (VedicChartConfig)+>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT VedicChartConfig (MarkedFieldBrush|DoFloodFill|OuterZodiac|Extends|Name|Description|OuterLineWidth|DoubleOuterLine|UseTextColors|UseSignColors|LineWidth|FgColor|SignBgColor|BgColor|TextColor|MarkedFieldColor|BgImage)*>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT Name (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT Description (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT OuterLineWidth (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT DoubleOuterLine (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT UseTextColors (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT UseSignColors (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT LineWidth (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT FgColor (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT SignBgColor (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT BgColor (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT TextColor (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT MarkedFieldColor (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT BgImage (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT Extends (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT OuterZodiac (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT DoFloodFill (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT MarkedFieldBrush (#PCDATA)>
