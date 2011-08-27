@@ -11,6 +11,9 @@ public:
   NcEvent();
   ~NcEvent();
 
+  void update();
+
+  void setDateTime( QDateTime dateTime );
   NcLocation* location();
   QDateTime dateTime();
   QDate date();

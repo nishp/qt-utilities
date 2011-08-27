@@ -5,7 +5,7 @@
 TEMPLATE = app
 TARGET =
 DEPENDPATH += . src/core src/gui
-INCLUDEPATH += . src/core src/gui
+INCLUDEPATH += . src/core src/gui src/adapter
 
 LIBS += -lwx_gtk2u_richtext-2.8 -lwx_gtk2u_aui-2.8 -lwx_gtk2u_xrc-2.8 -lwx_gtk2u_qa-2.8 -lwx_gtk2u_html-2.8 -lwx_gtk2u_adv-2.8 -lwx_gtk2u_core-2.8 -lwx_baseu_xml-2.8 -lwx_baseu_net-2.8 -lwx_baseu-2.8
 
@@ -23,7 +23,8 @@ HEADERS += src/core/NcEvent.h \
            src/gui/NcGfx2D.h \
            src/gui/NcMainWindow.h \
            src/gui/NcTestGui.h \
-    src/core/NcConstants.h
+    src/core/NcConstants.h \
+    src/adapter/NcMaitreyaAdapter.h
 SOURCES += src/core/NcEvent.cpp \
            src/core/NcLocation.cpp \
            src/core/NcPerson.cpp \
@@ -31,5 +32,8 @@ SOURCES += src/core/NcEvent.cpp \
            src/gui/NcFormPersonDataEntry.cpp \
            src/gui/NcGfx2D.cpp \
            src/gui/NcMainWindow.cpp \
-           src/gui/NcTestGui.cpp
+           src/gui/NcTestGui.cpp \
+    src/adapter/NcMaitreyaAdapter.cpp
+
+
 

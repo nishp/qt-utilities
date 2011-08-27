@@ -2,6 +2,7 @@
 #include "NcFormPersonDataEntry.h"
 #include "NcPerson.h"
 #include "NcEvent.h"
+#include "NcLocation.h"
 
 class NcPimplFormPersonDataEntry
 {
@@ -194,4 +195,24 @@ void NcFormPersonDataEntry::getData(NcPerson *person)
   person->setFirstName( d->leFirstName->text().trimmed() );
   person->setMidName( d->leMidName->text().trimmed() );
   person->setLastName( d->leLastName->text().trimmed() );
+
+  NcEvent* event = person->birthEvent();
+  NcLocation* loc = event->location();
+
+  QDate date(2011,11,11);
+  QTime time(11,11,11);
+
+  QDateTime dt(date,time);
+  dt.addSecs(5.5*3600);
+
+  event->setDateTime( dt );
+
+  double logitude = 75*3600 + 49*60 + 24;
+  double latitude = 26*3600 + 55*60 + 33;
+
+  loc->setLongitude( logitude );
+  loc->setLatitude( latitude );
+  loc->setTz( 5.5 );
+  loc->setDst( 0 );
+
 }
