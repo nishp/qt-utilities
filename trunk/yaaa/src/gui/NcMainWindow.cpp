@@ -3,6 +3,7 @@
 #include "NcTestGui.h"
 #include "NcPerson.h"
 #include "NcFormPersonDataEntry.h"
+#include "NcEvent.h"
 
 class NcPimplMainWindow
 {
@@ -92,6 +93,8 @@ void NcMainWindow::onNew()
   NcPerson person;
   NcFormPersonDataEntry form;
   form.exec();
+  form.getData( &person );
+  person.birthEvent()->update();
 }
 
 void NcMainWindow::onExit()
@@ -101,6 +104,8 @@ void NcMainWindow::onExit()
 
 void NcMainWindow::onTest1()
 {
+  //NcMaitreyaTextclient tc;
+  //tc.run();
    //TestDialog* dlg = new TestDialog;
   //dlg->setAttribute(Qt::WA_DeleteOnClose);
   //this->setCentralWidget(dlg);
