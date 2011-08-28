@@ -1,7 +1,12 @@
 #include <QtGui>
 #include "NcGfx2D.h"
+#include "VjText.h"
+#include "NcConstants.h"
+#include "NcPerson.h"
+#include "NcEvent.h"
+#include "NcLocation.h"
 
-#define VJ_MAX_HOUSES 12
+
 
 NcGfx2D::NcGfx2D()
 {
@@ -13,11 +18,12 @@ NcGfx2D::~NcGfx2D()
 
 }
 
-void NcGfx2D::drawChart(QPainter* p)
+void NcGfx2D::drawChart( VjChartData *chartData, QPainter* pntr)
 {
   //TODO: Optimize code
+  int i = 0;
 
-  QRect rect = p->window().adjusted(+25,+25,-25,-25);
+  QRect rect = pntr->window().adjusted(+25,+25,-25,-25);
 
   //int left = rect.left();
   //int top = rect.top();
@@ -82,7 +88,7 @@ void NcGfx2D::drawChart(QPainter* p)
   */
 
   //draw frame
-  p->drawRect(rect);
+  pntr->drawRect(rect);
 
   //p->drawConvexPolygon(polyHouse1);
   //p->drawConvexPolygon(polyHouse2);
@@ -98,14 +104,14 @@ void NcGfx2D::drawChart(QPainter* p)
   //p->drawConvexPolygon(polyHouse12);
 
   //draw diagonals
-  p->drawLine(p0,p12);
-  p->drawLine(p2,p10);
+  pntr->drawLine(p0,p12);
+  pntr->drawLine(p2,p10);
 
   //draw inner square
-  p->drawLine(p5,p1);
-  p->drawLine(p1,p7);
-  p->drawLine(p7,p11);
-  p->drawLine(p11,p5);
+  pntr->drawLine(p5,p1);
+  pntr->drawLine(p1,p7);
+  pntr->drawLine(p7,p11);
+  pntr->drawLine(p11,p5);
 
   //testing
   //p->drawLine(p1,p6);
@@ -122,64 +128,65 @@ void NcGfx2D::drawChart(QPainter* p)
   //p->drawLine(mid3,mid4);
   //p->drawLine(mid4,mid1);
 
-  QRect rectHouse[VJ_MAX_HOUSES];
+  QRect rectHouse[Vj::HousesSize];
   const int hMargin = 4;
-  rectHouse[0].setCoords( (p3.x()+p1.x())/2,
+
+  rectHouse[Vj::House_01].setCoords( (p3.x()+p1.x())/2,
                           (p3.y()+p1.y())/2,
                           (p6.x()+p4.x())/2,
                           (p6.y()+p4.y())/2);
 
-  rectHouse[1].setCoords( (p0.x()+p3.x())/2,
+  rectHouse[Vj::House_02].setCoords( (p0.x()+p3.x())/2,
                           p0.y(),
                           (p3.x()+p1.x())/2,
                           (p3.y()+p1.y())/2);
 
-  rectHouse[2].setCoords( p0.x()+hMargin,
+  rectHouse[Vj::House_03].setCoords( p0.x()+hMargin,
                           (p0.y()+p3.y())/2,
                           (p5.x()+p3.x())/2,
                           (p5.y()+p3.y())/2);
 
-  rectHouse[3].setCoords( (p5.x()+p3.x())/2,
+  rectHouse[Vj::House_04].setCoords( (p5.x()+p3.x())/2,
                           (p5.y()+p3.y())/2,
                           (p8.x()+p6.x())/2,
                           (p8.y()+p6.y())/2);
 
-  rectHouse[4].setCoords( p0.x()+hMargin,
+  rectHouse[Vj::House_05].setCoords( p0.x()+hMargin,
                           (p5.y()+p8.y())/2,
                           (p10.x()+p8.x())/2,
                           (p10.y()+p8.y())/2);
 
-  rectHouse[5].setCoords( (p10.x()+p8.x())/2,
+  rectHouse[Vj::House_06].setCoords( (p10.x()+p8.x())/2,
                           (p10.y()+p8.y())/2,
                           (p8.x()+p11.x())/2,
                           p10.y());
 
-  rectHouse[6].setCoords( (p8.x()+p6.x())/2,
+  rectHouse[Vj::House_07].setCoords( (p8.x()+p6.x())/2,
                           (p8.y()+p6.y())/2,
                           (p11.x()+p9.x())/2,
                           (p11.y()+p9.y())/2);
 
-  rectHouse[7].setCoords( (p11.x()+p9.x())/2,
+  rectHouse[Vj::House_08].setCoords( (p11.x()+p9.x())/2,
                           (p11.y()+p9.y())/2,
                           (p9.x()+p12.x())/2,
                           p12.y());
 
-  rectHouse[8].setCoords( (p9.x()+p7.x())/2,
+  rectHouse[Vj::House_09].setCoords( (p9.x()+p7.x())/2,
                           (p9.y()+p7.y())/2,
                           p7.x()-hMargin,
                           (p9.y()+p12.y())/2);
 
-  rectHouse[9].setCoords( (p6.x()+p4.x())/2,
+  rectHouse[Vj::House_10].setCoords( (p6.x()+p4.x())/2,
                           (p6.y()+p4.y())/2,
                           (p9.x()+p7.x())/2,
                           (p9.y()+p7.y())/2);
 
-  rectHouse[10].setCoords( (p4.x()+p2.x())/2,
+  rectHouse[Vj::House_11].setCoords( (p4.x()+p2.x())/2,
                            (p4.y()+p2.y())/2,
                            p2.x(),
                            (p4.y()+p7.y())/2);
 
-  rectHouse[11].setCoords( (p1.x()+p4.x())/2,
+  rectHouse[Vj::House_12].setCoords( (p1.x()+p4.x())/2,
                            p1.y(),
                            (p4.x()+p2.x())/2-hMargin,
                            (p4.y()+p2.y())/2);
@@ -199,35 +206,21 @@ void NcGfx2D::drawChart(QPainter* p)
 
   */
 
-
 #if 0
-  p->drawRect(rectHouse[0]);
-  p->drawRect(rectHouse[1]);
-  p->drawRect(rectHouse[2]);
-  p->drawRect(rectHouse[3]);
-  p->drawRect(rectHouse[4]);
-  p->drawRect(rectHouse[5]);
-  p->drawRect(rectHouse[6]);
-  p->drawRect(rectHouse[7]);
-  p->drawRect(rectHouse[8]);
-  p->drawRect(rectHouse[9]);
-  p->drawRect(rectHouse[10]);
-  p->drawRect(rectHouse[11]);
+ for ( i = Vj::HousesStart; i < Vj::HousesSize; ++i )
+ {
+   p->drawRect(rectHouse[i]);
+ }
+
 #endif
 
-  p->drawText(rectHouse[0],Qt::AlignCenter|Qt::TextWordWrap,"Ma Su Ju Ku Su As");
-  p->drawText(rectHouse[1],Qt::AlignCenter|Qt::TextWordWrap,"Ma Su Ju Ku Su As");
-  p->drawText(rectHouse[2],Qt::AlignCenter|Qt::TextWordWrap,"Ma Su Ju Ku Su As");
-  p->drawText(rectHouse[3],Qt::AlignCenter|Qt::TextWordWrap,"Ma Su Ju Ku Su As");
-  p->drawText(rectHouse[4],Qt::AlignCenter|Qt::TextWordWrap,"Ma Su Ju Ku Su As");
-  p->drawText(rectHouse[5],Qt::AlignCenter|Qt::TextWordWrap,"Ma Su Ju Ku Su As");
-  p->drawText(rectHouse[6],Qt::AlignCenter|Qt::TextWordWrap,"Ma Su Ju Ku Su As");
-  p->drawText(rectHouse[7],Qt::AlignCenter|Qt::TextWordWrap,"Ma Su Ju Ku Su As");
-  p->drawText(rectHouse[8],Qt::AlignCenter|Qt::TextWordWrap,"Ma Su Ju Ku Su As");
-  p->drawText(rectHouse[9],Qt::AlignCenter|Qt::TextWordWrap,"Ma Su Ju Ku Su As");
-  p->drawText(rectHouse[10],Qt::AlignCenter|Qt::TextWordWrap,"Ma Su Ju Ku Su As");
-  p->drawText(rectHouse[11],Qt::AlignCenter|Qt::TextWordWrap,"Ma Su Ju Ku Su As");
-  //p->drawText(rectHouse[0],Qt::AlignCenter|Qt::TextWordWrap,"Ma Su Ju Ku Su As");
+ for ( i = Vj::HousesStart; i < Vj::HousesSize; ++i )
+ {
+   if ( chartData->planetsInHouse[i].size() )
+   {
+     pntr->drawText(rectHouse[i],Qt::AlignCenter|Qt::TextWordWrap, chartData->planetsInHouse[i]);
+   }
+ }
 
 #if 0
   const int dy=4;
@@ -270,46 +263,46 @@ void NcGfx2D::drawChart(QPainter* p)
 
   //TODO : "-pointMargin-tempRect.height()/2" should be precalculated and kept in a var.
   //house1
-  p->drawText(tempRect.adjusted(0,0,0,-pointMargin-tempRect.height()/2),Qt::AlignBottom|Qt::AlignHCenter,"6");
+  pntr->drawText(tempRect.adjusted(0,0,0,-pointMargin-tempRect.height()/2),Qt::AlignBottom|Qt::AlignHCenter,"6");
   //house4
-  p->drawText(tempRect.adjusted(0,0,-pointMargin*4-tempRect.width()/2,0),Qt::AlignRight|Qt::AlignVCenter,"9");
+  pntr->drawText(tempRect.adjusted(0,0,-pointMargin*4-tempRect.width()/2,0),Qt::AlignRight|Qt::AlignVCenter,"9");
   //house7
-  p->drawText(tempRect.adjusted(0,+pointMargin+tempRect.height()/2,0,0),Qt::AlignTop|Qt::AlignHCenter,"12");
+  pntr->drawText(tempRect.adjusted(0,+pointMargin+tempRect.height()/2,0,0),Qt::AlignTop|Qt::AlignHCenter,"12");
   //house10
-  p->drawText(tempRect.adjusted(+pointMargin*4+tempRect.width()/2,0,0,0),Qt::AlignLeft|Qt::AlignVCenter,"3");
+  pntr->drawText(tempRect.adjusted(+pointMargin*4+tempRect.width()/2,0,0,0),Qt::AlignLeft|Qt::AlignVCenter,"3");
 
   //houses 2 & 3
   tempRect.moveLeft(p3.x()-fact);
   tempRect.moveTop(p3.y()-fact);
   //house 2
-  p->drawText(tempRect.adjusted(0,0,0,-pointMargin-tempRect.height()/2),Qt::AlignBottom|Qt::AlignHCenter,"6");
+  pntr->drawText(tempRect.adjusted(0,0,0,-pointMargin-tempRect.height()/2),Qt::AlignBottom|Qt::AlignHCenter,"6");
   //house 3
-  p->drawText(tempRect.adjusted(0,0,-pointMargin*4-tempRect.width()/2,0),Qt::AlignRight|Qt::AlignVCenter,"9");
+  pntr->drawText(tempRect.adjusted(0,0,-pointMargin*4-tempRect.width()/2,0),Qt::AlignRight|Qt::AlignVCenter,"9");
 
   //houses 5 & 6
   tempRect.moveLeft(p8.x()-fact);
   tempRect.moveTop(p8.y()-fact);
   //house5
-  p->drawText(tempRect.adjusted(0,0,-pointMargin*4-tempRect.width()/2,0),Qt::AlignRight|Qt::AlignVCenter,"9");
+  pntr->drawText(tempRect.adjusted(0,0,-pointMargin*4-tempRect.width()/2,0),Qt::AlignRight|Qt::AlignVCenter,"9");
   //house6
-  p->drawText(tempRect.adjusted(0,+pointMargin+tempRect.height()/2,0,0),Qt::AlignTop|Qt::AlignHCenter,"12");
+  pntr->drawText(tempRect.adjusted(0,+pointMargin+tempRect.height()/2,0,0),Qt::AlignTop|Qt::AlignHCenter,"12");
 
   //houses 8 & 9
   tempRect.moveLeft(p9.x()-fact);
   tempRect.moveTop(p9.y()-fact);
   //house8
-  p->drawText(tempRect.adjusted(0,+pointMargin+tempRect.height()/2,0,0),Qt::AlignTop|Qt::AlignHCenter,"12");
+  pntr->drawText(tempRect.adjusted(0,+pointMargin+tempRect.height()/2,0,0),Qt::AlignTop|Qt::AlignHCenter,"12");
   //house9
-  p->drawText(tempRect.adjusted(+pointMargin*4+tempRect.width()/2,0,0,0),Qt::AlignLeft|Qt::AlignVCenter,"3");
+  pntr->drawText(tempRect.adjusted(+pointMargin*4+tempRect.width()/2,0,0,0),Qt::AlignLeft|Qt::AlignVCenter,"3");
 
 
   //houses 11 & 12
   tempRect.moveLeft(p4.x()-fact);
   tempRect.moveTop(p4.y()-fact);
   //house11
-  p->drawText(tempRect.adjusted(+pointMargin*4+tempRect.width()/2,0,0,0),Qt::AlignLeft|Qt::AlignVCenter,"3");
+  pntr->drawText(tempRect.adjusted(+pointMargin*4+tempRect.width()/2,0,0,0),Qt::AlignLeft|Qt::AlignVCenter,"3");
   //house12
-  p->drawText(tempRect.adjusted(0,0,0,-pointMargin-tempRect.height()/2),Qt::AlignBottom|Qt::AlignHCenter,"6");
+  pntr->drawText(tempRect.adjusted(0,0,0,-pointMargin-tempRect.height()/2),Qt::AlignBottom|Qt::AlignHCenter,"6");
 
   /*
   p0----------p1----------p2

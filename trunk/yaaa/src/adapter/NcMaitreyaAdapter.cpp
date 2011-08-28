@@ -23,6 +23,7 @@
 #include "NcEvent.h"
 #include "NcLocation.h"
 #include "NcMaitreyaAdapter.h"
+#include "NcConstants.h"
 
 class NcPimplMaitreyaAdapter
 {
@@ -32,6 +33,16 @@ public:
   ChartProperties* chartprops;
   DataSet dataset;
 };
+
+int getMtPlanet( int& vjPlanet )
+{
+  if ( Vj::Rahu == vjPlanet )
+    return OTRUENODE;
+  if ( Vj::Ketu == vjPlanet )
+    return OTRUEDESCNODE;
+
+  return vjPlanet;
+}
 
 NcMaitreyaAdapter::NcMaitreyaAdapter()
   :d( new NcPimplMaitreyaAdapter )
@@ -93,5 +104,5 @@ void NcMaitreyaAdapter::setEvent(NcEvent *event)
 
 int NcMaitreyaAdapter::houseForPlanet(int planet)
 {
-
+  return d->h->getHousePos( getMtPlanet(planet), true );
 }

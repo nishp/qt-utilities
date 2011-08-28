@@ -4,11 +4,12 @@
 #include <QDialog>
 
 class NcGfx2D;
+class NcPerson;
 
 class TestDialog : public QDialog
 {
 public:
-  TestDialog(QWidget* parent = 0);
+  TestDialog( NcPerson *person, QWidget* parent = 0);
   ~TestDialog();
 
 protected:
@@ -16,6 +17,7 @@ protected:
 
 private:
   NcGfx2D* gfx;
+  NcPerson* person;
 };
 
 #endif // _NCTESTGUI_H_

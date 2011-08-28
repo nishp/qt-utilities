@@ -1,7 +1,15 @@
 #ifndef _NCGFX2D_H_
 #define _NCGFX2D_H_
 
+#include <QString>
+#include "NcConstants.h"
+
 class QPainter;
+
+struct VjChartData
+{
+  QString planetsInHouse[Vj::HousesSize];
+};
 
 class NcGfx2D
 {
@@ -9,7 +17,7 @@ public:
   NcGfx2D();
   ~NcGfx2D();
 
-  void drawChart(QPainter* p);
+  void drawChart(VjChartData *chartData,QPainter* pntr);
 
 private:
 
