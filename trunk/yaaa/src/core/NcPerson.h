@@ -11,11 +11,11 @@ public:
   NcPerson();
   ~NcPerson();
 
-  NcEvent* birthEvent();
-  QString fullName();
-  QString firstName();
-  QString midName();
-  QString lastName();
+  NcEvent* birthEvent() const;
+  QString fullName() const;
+  QString firstName() const;
+  QString midName() const;
+  QString lastName() const;
 
   void setFirstName( const QString &firstName );
   void setMidName( const QString &midName );

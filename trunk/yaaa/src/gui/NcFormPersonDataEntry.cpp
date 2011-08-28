@@ -147,9 +147,9 @@ void NcPimplFormPersonDataEntry::doLayout()
 
 void NcPimplFormPersonDataEntry::fillDummyData()
 {
-  leFirstName->setText( "dummyfirst" );
-  leMidName->setText( "dummymid" );
-  leLastName->setText( "dummylast" );
+  leFirstName->setText( "MyFirstName" );
+  leMidName->setText( "MyMidName" );
+  leLastName->setText( "MyLastName" );
   deDate->setDate( QDate( 2011, 11, 11 ) );
   teTime->setTime( QTime( 11, 11) );
   cmbCountry->addItem( "India" );
@@ -181,13 +181,15 @@ void NcFormPersonDataEntry::setData(NcPerson *person)
   d->leMidName->setText( person->midName() );
   d->leLastName->setText( person->lastName() );
 
-  NcEvent* event = person->birthEvent();
+  //NcEvent* event = person->birthEvent();
+  //NcLocation* loc = event->location();
 
 //  d->deDate =      person->;
 //  d->teTime =      person->;
 //  d->cmbCountry =  person->;
 //  d->cmbState =    person->;
 //  d->cmbCity =     person->;
+
 }
 
 void NcFormPersonDataEntry::getData(NcPerson *person)
@@ -203,16 +205,24 @@ void NcFormPersonDataEntry::getData(NcPerson *person)
   QTime time(11,11,11);
 
   QDateTime dt(date,time);
-  dt.addSecs(5.5*3600);
+  //dt.addSecs(5.5*3600);
 
   event->setDateTime( dt );
 
   double logitude = 75*3600 + 49*60 + 24;
+  logitude /= 3600;
+
   double latitude = 26*3600 + 55*60 + 33;
+  latitude /= 3600;
 
   loc->setLongitude( logitude );
   loc->setLatitude( latitude );
   loc->setTz( 5.5 );
   loc->setDst( 0 );
+
+  loc->setCountry( d->cmbCountry->currentText() );
+  loc->setState( d->cmbState->currentText() );
+  loc->setDistrict( d->cmbCity->currentText() );//TODO: FIXME
+  loc->setCity( d->cmbCity->currentText() );
 
 }

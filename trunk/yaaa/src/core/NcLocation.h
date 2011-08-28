@@ -16,11 +16,11 @@ public:
   double longitude();
   void setLongitude( double newLongitude );
 
-  float tz();
-  void setTz( float newTz );
+  double tz();
+  void setTz( double newTz );
 
-  float dst();
-  void setDst( float newDst );
+  double dst();
+  void setDst( double newDst );
 
   QString country();
   void setCountry( QString newCountry );
