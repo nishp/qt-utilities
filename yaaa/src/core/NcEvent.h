@@ -19,6 +19,8 @@ public:
   QDate date();
   QTime time();
 
+  int houseForPlanet( int planet );
+
 private:
   NcPimplEvent* d;
 };

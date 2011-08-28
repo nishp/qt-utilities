@@ -49,3 +49,8 @@ void NcEvent::update()
 {
   d->adpt.setEvent(this);
 }
+
+int NcEvent::houseForPlanet(int planet)
+{
+  return d->adpt.houseForPlanet( planet );
+}

@@ -91,15 +91,22 @@ void NcMainWindow::createMenus()
 
 void NcMainWindow::onNew()
 {
-  NcPerson person;
+  NcPerson* person = new NcPerson;
   NcFormPersonDataEntry form;
-  form.exec();
-  form.getData( &person );
-  person.birthEvent()->update();
+  if ( QDialog::Accepted == form.exec()  )
+  {
+    form.getData( person );
+    person->birthEvent()->update();
 
-  NcPersonFile file;
+    NcPersonFile file;
 
-  file.savePerson( &person, "/home/nish/Desktop/charts/nishant.ajc" );
+    file.savePerson( person, "/home/nish/Desktop/charts/nishant.ajc" );
+
+    TestDialog* dlg = new TestDialog(person);
+    dlg->setAttribute(Qt::WA_DeleteOnClose);
+    this->setCentralWidget(dlg);
+
+  }
 
 }
 
