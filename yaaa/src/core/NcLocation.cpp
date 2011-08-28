@@ -6,8 +6,8 @@ class NcPimplLocation
 public:
   double latitude;
   double longitude;
-  float tz;
-  float dst;
+  double tz;
+  double dst;
 
   QString country;
   QString state;
@@ -47,22 +47,22 @@ void NcLocation::setLongitude(double newLongitude)
   d->longitude = newLongitude;
 }
 
-float NcLocation::tz()
+double NcLocation::tz()
 {
   return d->tz;
 }
 
-void NcLocation::setTz(float newTz)
+void NcLocation::setTz(double newTz)
 {
   d->tz = newTz;
 }
 
-float NcLocation::dst()
+double NcLocation::dst()
 {
   return d->dst;
 }
 
-void NcLocation::setDst(float newDst)
+void NcLocation::setDst(double newDst)
 {
   d->dst = newDst;
 }

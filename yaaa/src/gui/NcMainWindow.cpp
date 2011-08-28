@@ -4,6 +4,7 @@
 #include "NcPerson.h"
 #include "NcFormPersonDataEntry.h"
 #include "NcEvent.h"
+#include "NcPersonFile.h"
 
 class NcPimplMainWindow
 {
@@ -95,6 +96,11 @@ void NcMainWindow::onNew()
   form.exec();
   form.getData( &person );
   person.birthEvent()->update();
+
+  NcPersonFile file;
+
+  file.savePerson( &person, "/home/nish/Desktop/charts/nishant.ajc" );
+
 }
 
 void NcMainWindow::onExit()

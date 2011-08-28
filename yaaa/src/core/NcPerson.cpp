@@ -23,27 +23,27 @@ NcPerson::~NcPerson()
   delete d;
 }
 
-NcEvent * NcPerson::birthEvent()
+NcEvent * NcPerson::birthEvent() const
 {
   return &d->birthEvent;
 }
 
-QString NcPerson::fullName()
+QString NcPerson::fullName() const
 {
   return d->firstName + " " + d->midName + " " + d->lastName;
 }
 
-QString NcPerson::firstName()
+QString NcPerson::firstName() const
 {
   return d->firstName;
 }
 
-QString NcPerson::midName()
+QString NcPerson::midName() const
 {
   return d->midName;
 }
 
-QString NcPerson::lastName()
+QString NcPerson::lastName() const
 {
   return d->lastName;
 }
