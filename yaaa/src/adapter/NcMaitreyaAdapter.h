@@ -11,6 +11,7 @@ public:
 
   void setEvent( NcEvent* event );
   int houseForPlanet( int planet );
+  int rashi( int planet );
 
 private:
   NcPimplMaitreyaAdapter* d;

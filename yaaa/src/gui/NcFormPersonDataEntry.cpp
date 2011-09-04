@@ -205,7 +205,7 @@ void NcFormPersonDataEntry::getData(NcPerson *person)
   //QTime time(11,11,11);
 
   QDate date(1983,10,25);
-  QTime time(21,0,0);
+  QTime time(21,00,0);
 
   QDateTime dt(date,time);
   //dt.addSecs(5.5*3600);
@@ -215,7 +215,7 @@ void NcFormPersonDataEntry::getData(NcPerson *person)
   double logitude = 77*3600 + 51*60 + 0;
   logitude /= 3600;
 
-  double latitude = 28*3600 + 15*60 + 0;
+  double latitude = 28*3600 + 14*60 + 0;
   latitude /= 3600;
 
   loc->setLongitude( logitude );

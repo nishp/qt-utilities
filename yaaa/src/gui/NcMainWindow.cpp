@@ -34,6 +34,7 @@ NcMainWindow::NcMainWindow(QWidget* parent)
   resize(640,480);
   init();
   onTest1();
+  onNew();
 }
 
 NcMainWindow::~NcMainWindow()

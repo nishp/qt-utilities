@@ -20,6 +20,7 @@ public:
   QTime time();
 
   int houseForPlanet( int planet );
+  int rashi( int planet );
 
 private:
   NcPimplEvent* d;

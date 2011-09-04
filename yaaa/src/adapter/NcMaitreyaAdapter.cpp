@@ -41,16 +41,16 @@ int getMtPlanet( int& vjPlanet )
   switch ( vjPlanet )
   {
     default: qDebug() << "Error in getMtPlanet";
-    case Vj::Sun:       return OSUN;
-    case Vj::Moon:      return OMOON;
-    case Vj::Mars:      return OMARS;
-    case Vj::Mercury:   return OMERCURY;
-    case Vj::Jupiter:   return OJUPITER;
-    case Vj::Venus:     return OVENUS;
-    case Vj::Saturn:    return OSATURN;
-    case Vj::Rahu:      return OTRUENODE;
-    case Vj::Ketu:      return OTRUEDESCNODE;
-    case Vj::Ascendant: return OASCENDANT;
+    case Nc::Sun:       return OSUN;
+    case Nc::Moon:      return OMOON;
+    case Nc::Mars:      return OMARS;
+    case Nc::Mercury:   return OMERCURY;
+    case Nc::Jupiter:   return OJUPITER;
+    case Nc::Venus:     return OVENUS;
+    case Nc::Saturn:    return OSATURN;
+    case Nc::Rahu:      return OTRUENODE;
+    case Nc::Ketu:      return OTRUEDESCNODE;
+    case Nc::Ascendant: return OASCENDANT;
   }
 }
 
@@ -75,17 +75,23 @@ void NcMaitreyaAdapter::setEvent(NcEvent *event)
   QDate date = d->event->date();
   QTime time = d->event->time();
 
+  qDebug() << "dt=" << d->event->dateTime();
+
   double fTime = 0;
   fTime += time.hour();// * 60 * 60;
   fTime += time.minute() / 60;
   fTime += (time.second() / 60) / 60;
 
-  //wxString basedir = wxT("/home/nish/svn-google/qt-utilities/yaaa/src/maitreya");
+  fTime -= loc->tz() - loc->dst();
 
-  //FileConfig::get()->init( basedir );
+  qDebug() << "ftime = " << fTime;
 
-  NcMtTextClient tc;
-  tc.run();
+  wxString basedir = wxT("/home/nish/svn-google/qt-utilities/yaaa/src/maitreya");
+
+  FileConfig::get()->init( basedir );
+
+  //NcMtTextClient tc;
+  //tc.run();
 
   wxString name( loc->city().toAscii().constData(), wxConvUTF8 );
   d->dataset.setLocation( name, loc->longitude(), loc->latitude(), loc->tz(), loc->dst() );
@@ -100,18 +106,18 @@ void NcMaitreyaAdapter::setEvent(NcEvent *event)
 
   //Calculator *calculator = CalculatorFactory().getCalculator();
 
-  d->chartprops = new ChartProperties;
+  //d->chartprops = new ChartProperties;
   d->h = new Horoscope;
 
-  d->chartprops->setVedic();
+  //d->chartprops->setVedic();
 
-  //d->h->setDate( d->dataset.getJD());
-  //d->h->setLocation( *(d->dataset.getLocation()) );
+  d->h->setDate( d->dataset.getJD());
+  d->h->setLocation( *(d->dataset.getLocation()) );
 
   //d->h->setDate( ds.getJD());
   //d->h->setLocation( *(ds.getLocation()) );
 
-  d->h->openFile(ff);
+  //d->h->openFile(ff);
   d->h->update();
 
   wxString dmp;
@@ -138,6 +144,11 @@ int NcMaitreyaAdapter::houseForPlanet(int planet)
 {
   //return d->h->getHousePos( getMtPlanet(planet), true );
   return d->vh->getBhava( getMtPlanet(planet) );
+}
+
+int NcMaitreyaAdapter::rashi(int planet)
+{
+  return d->vh->getRasi(getMtPlanet(planet));
 }
 
 

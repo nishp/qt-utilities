@@ -1,14 +1,17 @@
-#ifndef _VJTEXT_H_
-#define _VJTEXT_H_
+#ifndef _NCTEXT_H_
+#define _NCTEXT_H_
 
 #include <QString>
-class VjText
+class NcText
 {
 public:
   //VjText();
   QString planetName( int planet );
   QString planetNameShort( int planet );
   QString planetNameLong( int planet );
+
+  QString rashiNumber( int rashi );
+  QString rashiNameLong( int rashi );
 };
 
-#endif // _VJTEXT_H_
+#endif // _NCTEXT_H_
