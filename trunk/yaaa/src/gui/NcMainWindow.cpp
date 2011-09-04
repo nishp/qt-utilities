@@ -15,7 +15,7 @@ public:
 
   //File
   QAction* actNew;
-  QAction* actExit;
+  QAction* actQuit;
 
   //Test
   QAction* actTest1;
@@ -52,10 +52,14 @@ void NcMainWindow::createActions()
 {
   //File
   d->actNew = new QAction(tr("New"),this);
-  d->actExit = new QAction(tr("Exit"),this);
+  d->actNew->setShortcut(QKeySequence::New);
+
+  d->actQuit = new QAction(tr("Exit"),this);
+  d->actQuit->setShortcut(QKeySequence::Quit);
+
 
   connect(d->actNew,SIGNAL(triggered(bool)),this,SLOT(onNew()));
-  connect(d->actExit,SIGNAL(triggered(bool)),this,SLOT(onExit()));
+  connect(d->actQuit,SIGNAL(triggered(bool)),this,SLOT(onQuit()));
 
   //Test
   d->actTest1 = new QAction(tr("Test1"),this);
@@ -76,9 +80,9 @@ void NcMainWindow::createMenus()
 {
   QMenuBar* bar = menuBar();
 
-  d->menuFile = bar->addMenu(tr("File"));
+  d->menuFile = bar->addMenu(tr("&File"));
   d->menuFile->addAction(d->actNew);
-  d->menuFile->addAction(d->actExit);
+  d->menuFile->addAction(d->actQuit);
 
   d->menuTest = bar->addMenu(tr("Test"));
   d->menuTest->addAction(d->actTest1);
@@ -93,7 +97,7 @@ void NcMainWindow::onNew()
 {
   NcPerson* person = new NcPerson;
   NcFormPersonDataEntry form;
-  if ( QDialog::Accepted == form.exec()  )
+  //if ( QDialog::Accepted == form.exec()  )
   {
     form.getData( person );
     person->birthEvent()->update();
@@ -110,7 +114,7 @@ void NcMainWindow::onNew()
 
 }
 
-void NcMainWindow::onExit()
+void NcMainWindow::onQuit()
 {
   QApplication::closeAllWindows();
 }

@@ -19,7 +19,7 @@
 ****************************************************************************/
 
 #ifdef __GNUG__
-	#pragma implementation "SimpleHoroscope.h"
+  #pragma implementation "SimpleHoroscope.h"
 #endif
 
 #include "SimpleHoroscope.h"
@@ -40,109 +40,109 @@ IMPLEMENT_CLASS( SimpleHoroscope, wxEvtHandler )
 
 /*****************************************************
 **
-**   ObjectPosition   ---   Constructor 
+**   ObjectPosition   ---   Constructor
 **
 ******************************************************/
 ObjectPosition::ObjectPosition()
 {
-	length = 0;
-	latitude = 0;
-	speed = 0;
-	retro = false;
+  length = 0;
+  latitude = 0;
+  speed = 0;
+  retro = false;
 }
 
 /*****************************************************
 **
-**   ObjectPosition   ---   Constructor 
+**   ObjectPosition   ---   Constructor
 **
 ******************************************************/
 ObjectPosition::ObjectPosition( const double &l, const double &b, const double &s )
 {
-	length = l;
-	latitude = b;
-	speed = s;
-	retro = false;
+  length = l;
+  latitude = b;
+  speed = s;
+  retro = false;
 }
 
 /*****************************************************
 **
-**   SimpleHoroscope   ---   Constructor 
+**   SimpleHoroscope   ---   Constructor
 **
 ******************************************************/
 SimpleHoroscope::SimpleHoroscope()
 {
-	int i;
-	for ( i = 0; i < MAX_EPHEM_OBJECTS; i++ )
-	{
-		object_len[i] = 0;
-		object_lat[i] = 0;
-		object_speed[i] = 1;
-	}
-	for( i = HOUSE1; i <= HOUSE12; i++ ) whousecusp[i] = ihousecusp[i] = ihousesandhi[0] = 0;
+  int i;
+  for ( i = 0; i < MAX_EPHEM_OBJECTS; i++ )
+  {
+    object_len[i] = 0;
+    object_lat[i] = 0;
+    object_speed[i] = 1;
+  }
+  for( i = HOUSE1; i <= HOUSE12; i++ ) whousecusp[i] = ihousecusp[i] = ihousesandhi[0] = 0;
 
-	dataSet = new FileDataSet;
-	dataSet->setLocation( config->defaultLocation );
+  dataSet = new FileDataSet;
+  dataSet->setLocation( config->defaultLocation );
 }
 
 /*****************************************************
 **
-**   SimpleHoroscope   ---   Destructor 
+**   SimpleHoroscope   ---   Destructor
 **
 ******************************************************/
 SimpleHoroscope::~SimpleHoroscope()
 {
-	delete dataSet;
+  delete dataSet;
 }
 
 /*****************************************************
 **
-**   SimpleHoroscope   ---   updatePlanets 
+**   SimpleHoroscope   ---   updatePlanets
 **
 ** update of Ayanamsa, object_len etc and house length
 **
 ******************************************************/
 void SimpleHoroscope::updatePlanets()
 {
-	int i;
-	double r[12], houselen;
-	Calculator *calculator = CalculatorFactory().getCalculator();
+  int i;
+  double r[12], houselen;
+  Calculator *calculator = CalculatorFactory().getCalculator();
 
-	// Ayanamsa
-	iayanamsa_type = config->vAyanamsa;
-	wayanamsa_type = config->wAyanamsa;
-	iayanamsa = calculator->calcAyanamsa( getJD(), iayanamsa_type );
-	wayanamsa = calculator->calcAyanamsa( getJD(), wayanamsa_type );
+  // Ayanamsa
+  iayanamsa_type = config->vAyanamsa;
+  wayanamsa_type = config->wAyanamsa;
+  iayanamsa = calculator->calcAyanamsa( getJD(), iayanamsa_type );
+  wayanamsa = calculator->calcAyanamsa( getJD(), wayanamsa_type );
 
-	// Planetary positions
-	for( i = 0; i < MAX_EPHEM_OBJECTS; i++ )
-	{
-		if ( i == OMEANDESCNODE || i == OTRUEDESCNODE || i == OASCENDANT || i == OMERIDIAN ) continue;
-		calculator->calcPositionSpeed( dataSet, i, object_len[i], object_lat[i], object_speed[i] );
-	}
-	object_len[OMEANDESCNODE] = red_deg( object_len[OMEANNODE] + 180 );
-	object_len[OTRUEDESCNODE] = red_deg( object_len[OTRUENODE] + 180 );
-	object_speed[OMEANDESCNODE] = object_speed[OMEANNODE];
-	object_speed[OTRUEDESCNODE] = object_speed[OTRUENODE];
-	
-	// House calculation
-	calculator->calcHouses( getJD(), getLongitude(), getLatitude(), config->wHouseSystem, r );
-	for( i = HOUSE1; i <= HOUSE12; i++ ) whousecusp[i] = red_deg( r[i] - wayanamsa );
+  // Planetary positions
+  for( i = 0; i < MAX_EPHEM_OBJECTS; i++ )
+  {
+    if ( i == OMEANDESCNODE || i == OTRUEDESCNODE || i == OASCENDANT || i == OMERIDIAN ) continue;
+    calculator->calcPositionSpeed( dataSet, i, object_len[i], object_lat[i], object_speed[i] );
+  }
+  object_len[OMEANDESCNODE] = red_deg( object_len[OMEANNODE] + 180 );
+  object_len[OTRUEDESCNODE] = red_deg( object_len[OTRUENODE] + 180 );
+  object_speed[OMEANDESCNODE] = object_speed[OMEANNODE];
+  object_speed[OTRUEDESCNODE] = object_speed[OTRUENODE];
 
-	if ( config->vHouseSystem != config->wHouseSystem )
-		calculator->calcHouses( getJD(), getLongitude(), getLatitude(), config->vHouseSystem, r );
+  // House calculation
+  calculator->calcHouses( getJD(), getLongitude(), getLatitude(), config->wHouseSystem, r );
+  for( i = HOUSE1; i <= HOUSE12; i++ ) whousecusp[i] = red_deg( r[i] - wayanamsa );
 
-	for( i = HOUSE1; i <= HOUSE12; i++ ) ihousecusp[i] = red_deg( r[i] - iayanamsa );
-	for( i = HOUSE1; i <= HOUSE12; i++ )
-	{
-		houselen = red_deg( ihousecusp[i<11 ? i+1 : 0] - ihousecusp[i] );
-		ihousesandhi[i] = red_deg( ihousecusp[i] + .5 * houselen );
-	}
-	object_len[OASCENDANT] = r[0];
-	object_len[OMERIDIAN] = r[9];
+  if ( config->vHouseSystem != config->wHouseSystem )
+    calculator->calcHouses( getJD(), getLongitude(), getLatitude(), config->vHouseSystem, r );
 
-	siderealTime = calculator->calcSiderealTime( getJD(), getLongitude() );
+  for( i = HOUSE1; i <= HOUSE12; i++ ) ihousecusp[i] = red_deg( r[i] - iayanamsa );
+  for( i = HOUSE1; i <= HOUSE12; i++ )
+  {
+    houselen = red_deg( ihousecusp[i<11 ? i+1 : 0] - ihousecusp[i] );
+    ihousesandhi[i] = red_deg( ihousecusp[i] + .5 * houselen );
+  }
+  object_len[OASCENDANT] = r[0];
+  object_len[OMERIDIAN] = r[9];
 
-	updatePositionArrays();
+  siderealTime = calculator->calcSiderealTime( getJD(), getLongitude() );
+
+  updatePositionArrays();
 }
 
 /*****************************************************
@@ -155,23 +155,23 @@ void SimpleHoroscope::updatePlanets()
 ******************************************************/
 void SimpleHoroscope::updatePositionArrays()
 {
-	// Setup Object position structs
-	for( int i = 0; i < MAX_EPHEM_OBJECTS; i++ )
-	{
-		vpos[i].length   = wpos[i].length   = object_len[i];
-		vpos[i].latitude = wpos[i].latitude = object_lat[i];
-		vpos[i].speed    = wpos[i].speed    = object_speed[i];
-		if ( i != OMEANNODE && i != OMEANDESCNODE )
-			vpos[i].retro = wpos[i].retro = ( object_speed[i] < 0 );
+  // Setup Object position structs
+  for( int i = 0; i < MAX_EPHEM_OBJECTS; i++ )
+  {
+    vpos[i].length   = wpos[i].length   = object_len[i];
+    vpos[i].latitude = wpos[i].latitude = object_lat[i];
+    vpos[i].speed    = wpos[i].speed    = object_speed[i];
+    if ( i != OMEANNODE && i != OMEANDESCNODE )
+      vpos[i].retro = wpos[i].retro = ( object_speed[i] < 0 );
 
-		// p.length =0 can happen for planetoids etc. without data files.
-		// Do not adjust Ayanamsa in that case, so 0 Aries position will be quite obvious.
-		if ( object_len[i] != 0 )
-		{
-			vpos[i].length = red_deg( vpos[i].length - iayanamsa );
-			wpos[i].length = red_deg( wpos[i].length - wayanamsa );
-		}
-	}
+    // p.length =0 can happen for planetoids etc. without data files.
+    // Do not adjust Ayanamsa in that case, so 0 Aries position will be quite obvious.
+    if ( object_len[i] != 0 )
+    {
+      vpos[i].length = red_deg( vpos[i].length - iayanamsa );
+      wpos[i].length = red_deg( wpos[i].length - wayanamsa );
+    }
+  }
 }
 
 /*****************************************************
@@ -181,8 +181,8 @@ void SimpleHoroscope::updatePositionArrays()
 ******************************************************/
 ObjectPosition SimpleHoroscope::getObjectPosition( const int &planet, const bool &vedic ) const
 {
-	ASSERT_VALID_EPHEM_OBJECT( planet )
-	return( vedic ? vpos[planet] : wpos[planet] );
+  ASSERT_VALID_EPHEM_OBJECT( planet )
+  return( vedic ? vpos[planet] : wpos[planet] );
 }
 
 /*****************************************************
@@ -192,8 +192,8 @@ ObjectPosition SimpleHoroscope::getObjectPosition( const int &planet, const bool
 ******************************************************/
 double SimpleHoroscope::getLength( const int &planet, const bool &vedic ) const
 {
-	ASSERT_VALID_OBJECT( planet );
-	return getObjectPosition( planet, vedic ).length;
+  ASSERT_VALID_OBJECT( planet );
+  return getObjectPosition( planet, vedic ).length;
 }
 
 /*****************************************************
@@ -203,8 +203,8 @@ double SimpleHoroscope::getLength( const int &planet, const bool &vedic ) const
 ******************************************************/
 bool SimpleHoroscope::isRetrograde( const int &planet ) const
 {
-	ASSERT_VALID_OBJECT( planet );
-	return getObjectPosition( planet, true ).retro;
+  ASSERT_VALID_OBJECT( planet );
+  return getObjectPosition( planet, true ).retro;
 }
 
 /*****************************************************
@@ -214,8 +214,8 @@ bool SimpleHoroscope::isRetrograde( const int &planet ) const
 ******************************************************/
 double SimpleHoroscope::getTropicalLength( const int &planet ) const
 {
-	ASSERT_VALID_EPHEM_OBJECT( planet )
-	return object_len[planet];
+  ASSERT_VALID_EPHEM_OBJECT( planet )
+  return object_len[planet];
 }
 
 /*****************************************************
@@ -225,8 +225,8 @@ double SimpleHoroscope::getTropicalLength( const int &planet ) const
 ******************************************************/
 double SimpleHoroscope::getLatitude( const int &planet ) const
 {
-	ASSERT_VALID_OBJECT( planet );
-	return getObjectPosition( planet, true ).latitude;
+  ASSERT_VALID_OBJECT( planet );
+  return getObjectPosition( planet, true ).latitude;
 }
 
 /*****************************************************
@@ -236,20 +236,20 @@ double SimpleHoroscope::getLatitude( const int &planet ) const
 ******************************************************/
 double SimpleHoroscope::getSpeed( const int &planet ) const
 {
-	ASSERT_VALID_EPHEM_OBJECT( planet )
-	return object_speed[planet];
+  ASSERT_VALID_EPHEM_OBJECT( planet )
+  return object_speed[planet];
 }
 
 /*****************************************************
 **
-**   SimpleHoroscope   ---   getHouse 
+**   SimpleHoroscope   ---   getHouse
 **
 ******************************************************/
 double SimpleHoroscope::getHouse( const int& housenb, const bool& vedic, const bool getsandhi ) const
 {
-	ASSERT_VALID_HOUSE( housenb )
-	if( vedic ) { return( getsandhi ? ihousesandhi[housenb] : ihousecusp[housenb] ); }
-	else { return whousecusp[housenb]; }
+  ASSERT_VALID_HOUSE( housenb )
+  if( vedic ) { return( getsandhi ? ihousesandhi[housenb] : ihousecusp[housenb] ); }
+  else { return whousecusp[housenb]; }
 }
 
 /*****************************************************
@@ -259,81 +259,84 @@ double SimpleHoroscope::getHouse( const int& housenb, const bool& vedic, const b
 ******************************************************/
 double SimpleHoroscope::getHouse4Length( const double &len, const bool &vedic ) const
 {
-	double hstart, hend, hlen, hpart, ret;
-	for( int i = HOUSE1; i <= HOUSE12; i++ )
-	{
-		if ( ! vedic )
-		{
-			hstart = whousecusp[i];
-			hend = whousecusp[red12(i+1)];
-		}
-		else
-		{
-			if ( config->vHouseWestern )
-			{
-				hstart = ihousecusp[i];
-				hend = ihousecusp[red12(i+1)];
-			}
-			else
-			{
-				hstart = ihousesandhi[red12( i -1)];
-				hend = ihousesandhi[red12(i)];
-			}
-		}
-		if (( hstart <= len && len < hend ) || ( hstart > hend && ( len >= hstart || len < hend )))
-		{
-			hlen = red_deg( hend - hstart );
-			hpart = red_deg( len - hstart );
-			ret = i + hpart / hlen;
-			//printf( "SimpleHoroscope::getHouse4Length len %f vedic %d hstart %f hend %f hlen %f hpart %f ret %f\n", len, vedic, hstart, hend, hlen, hpart, ret );
-			assert( ret >= 0 && ret < 12 );
-			return ret;
-		}
-	}
-	assert( 0 );
+  double hstart, hend, hlen, hpart, ret;
+  for( int i = HOUSE1; i <= HOUSE12; i++ )
+  {
+    if ( ! vedic )
+    {
+      hstart = whousecusp[i];
+      hend = whousecusp[red12(i+1)];
+    }
+    else
+    {
+      if ( config->vHouseWestern )
+      {
+        hstart = ihousecusp[i];
+        hend = ihousecusp[red12(i+1)];
+      }
+      else
+      {
+        hstart = ihousesandhi[red12( i -1)];
+        hend = ihousesandhi[red12(i)];
+      }
+    }
+    if (( hstart <= len && len < hend ) || ( hstart > hend && ( len >= hstart || len < hend )))
+    {
+      hlen = red_deg( hend - hstart );
+      hpart = red_deg( len - hstart );
+      ret = i + hpart / hlen;
+      //printf( "SimpleHoroscope::getHouse4Length len %f vedic %d hstart %f hend %f hlen %f hpart %f ret %f\n", len, vedic, hstart, hend, hlen, hpart, ret );
+      assert( ret >= 0 && ret < 12 );
+      return ret;
+    }
+  }
+  assert( 0 );
 
 return 0;
 }
 
+#include <QDebug>
+#include "Lang.h"
 /*****************************************************
 **
-**   SimpleHoroscope   ---   getHousePos 
+**   SimpleHoroscope   ---   getHousePos
 **
 ******************************************************/
 int SimpleHoroscope::getHousePos( const int &planet, const bool &vedic ) const
 {
-	// TODO store house lengths on update() and return that instead of repeated calculation
-	return (int)getHouse4Length( getLength( planet, vedic), vedic );
+  // TODO store house lengths on update() and return that instead of repeated calculation
+  qDebug() << planet << Lang().getObjectName( planet, TLARGE, vedic ).ToAscii().data()<<" = " << getHouse4Length( getLength( planet, vedic), vedic );
+  return (int)getHouse4Length( getLength( planet, vedic), vedic );
 }
 
 /*****************************************************
 **
-**   SimpleHoroscope   ---   openFile 
+**   SimpleHoroscope   ---   openFile
 **
 ******************************************************/
 bool SimpleHoroscope::openFile( const wxChar *filename )
 {
-	return dataSet->openFile( filename );
+  return dataSet->openFile( filename );
 }
 
 /*****************************************************
 **
-**   SimpleHoroscope   ---   saveAs 
+**   SimpleHoroscope   ---   saveAs
 **
 ******************************************************/
 bool SimpleHoroscope::saveAs( const wxChar *filename )
 {
-	return dataSet->saveAs( filename );
+  return dataSet->saveAs( filename );
 }
 
 /*****************************************************
 **
-**   SimpleHoroscope   ---   save 
+**   SimpleHoroscope   ---   save
 **
 ******************************************************/
 bool SimpleHoroscope::save()
 {
-	return dataSet->save();
+  return dataSet->save();
 }
 
 

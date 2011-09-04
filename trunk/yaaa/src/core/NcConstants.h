@@ -16,6 +16,7 @@ enum enPlanets
   Saturn,
   Rahu,
   Ketu,
+  Ascendant,
   PlanetsSize
 };
 

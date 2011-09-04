@@ -7,6 +7,8 @@ class VjText
 public:
   //VjText();
   QString planetName( int planet );
+  QString planetNameShort( int planet );
+  QString planetNameLong( int planet );
 };
 
 #endif // _VJTEXT_H_
