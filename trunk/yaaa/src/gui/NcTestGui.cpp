@@ -3,7 +3,7 @@
 #include "NcGfx2D.h"
 #include "NcPerson.h"
 #include "NcEvent.h"
-#include "VjText.h"
+#include "NcText.h"
 
 TestDialog::TestDialog( NcPerson *person, QWidget* parent) : QDialog(parent)
 {
@@ -18,19 +18,25 @@ TestDialog::~TestDialog()
 
 void TestDialog::paintEvent(QPaintEvent *)
 {
+  QTime t;
+  t.start();
+
   QPainter p(this);
-  VjChartData chartData;
-  VjText text;
+  NcChartData chartData;
+  NcText text;
   NcEvent *event = person->birthEvent();
   int house;
 
   qDebug() << "chart";
-  for ( int i = Vj::PlanetsStart; i < Vj::PlanetsSize; ++i )
+  for ( int i = Nc::Sun; i < Nc::PlanetsSize; ++i )
   {
     house = event->houseForPlanet( i );
     chartData.planetsInHouse[house] += " " + text.planetName(i);
     qDebug() << i << text.planetName(i) << "=" << house;
   }
+  chartData.asc = event->rashi( Nc::Ascendant );
 
   gfx->drawChart( &chartData, &p);
+
+  qDebug() << "elapsed = " << t.elapsed();
 }

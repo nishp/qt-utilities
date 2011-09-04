@@ -26,8 +26,8 @@ HEADERS += src/core/NcEvent.h \
     src/core/NcConstants.h \
     src/adapter/NcMaitreyaAdapter.h \
     src/core/NcPersonFile.h \
-    src/core/VjText.h \
-    src/core/NcMtTextClient.h
+    src/core/NcMtTextClient.h \
+    src/core/NcText.h
 SOURCES += src/core/NcEvent.cpp \
            src/core/NcLocation.cpp \
            src/core/NcPerson.cpp \
@@ -38,8 +38,12 @@ SOURCES += src/core/NcEvent.cpp \
            src/gui/NcTestGui.cpp \
     src/adapter/NcMaitreyaAdapter.cpp \
     src/core/NcPersonFile.cpp \
-    src/core/VjText.cpp \
-    src/core/NcMtTextClient.cpp
+    src/core/NcMtTextClient.cpp \
+    src/core/NcText.cpp
+
+
+
+
 
 
 

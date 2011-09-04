@@ -54,3 +54,8 @@ int NcEvent::houseForPlanet(int planet)
 {
   return d->adpt.houseForPlanet( planet );
 }
+
+int NcEvent::rashi(int planet)
+{
+  return d->adpt.rashi( planet );
+}

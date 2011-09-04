@@ -1,12 +1,11 @@
 #ifndef _NCCONSTANTS_H_
 #define _NCCONSTANTS_H_
 
-namespace Vj
+namespace Nc
 {
 
 enum enPlanets
 {
-  PlanetsStart = 0,
   Sun = 0,
   Moon,
   Mars,
@@ -22,7 +21,6 @@ enum enPlanets
 
 enum enHouses
 {
-  HousesStart = 0,
   House_01 = 0,
   House_02,
   House_03,
@@ -38,6 +36,37 @@ enum enHouses
   HousesSize
 };
 
-}//end Namespace Vj
+enum enSigns
+{
+  Aries,
+  Taurus,
+  Gemini,
+  Cancer,
+  Leo,
+  Virgo,
+  Libra,
+  Scorpio,
+  Sagittarius,
+  Capricorn,
+  Aquarius,
+  Pisces,
+  SignSize
+};
+
+}//end Namespace Nc
+
+class NcConstants
+{
+public:
+  static int nextRashi( int rashi )
+  {
+    ++rashi;
+    if ( rashi > Nc::Pisces )
+      return Nc::Aries;
+    else
+      return rashi;
+  }
+};
+
 
 #endif // _NCCONSTANTS_H_

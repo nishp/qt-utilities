@@ -6,9 +6,10 @@
 
 class QPainter;
 
-struct VjChartData
+struct NcChartData
 {
-  QString planetsInHouse[Vj::HousesSize];
+  QString planetsInHouse[Nc::HousesSize];
+  int asc;
 };
 
 class NcGfx2D
@@ -17,7 +18,7 @@ public:
   NcGfx2D();
   ~NcGfx2D();
 
-  void drawChart(VjChartData *chartData,QPainter* pntr);
+  void drawChart(NcChartData *chartData,QPainter* pntr);
 
 private:
 
