@@ -16,7 +16,7 @@ public:
 private slots:
   //File
   void onNew();
-  void onExit();
+  void onQuit();
 
   //Test
   void onTest1();

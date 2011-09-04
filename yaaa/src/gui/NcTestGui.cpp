@@ -24,10 +24,12 @@ void TestDialog::paintEvent(QPaintEvent *)
   NcEvent *event = person->birthEvent();
   int house;
 
+  qDebug() << "chart";
   for ( int i = Vj::PlanetsStart; i < Vj::PlanetsSize; ++i )
   {
     house = event->houseForPlanet( i );
     chartData.planetsInHouse[house] += " " + text.planetName(i);
+    qDebug() << i << text.planetName(i) << "=" << house;
   }
 
   gfx->drawChart( &chartData, &p);
