@@ -16,20 +16,38 @@ public:
 private slots:
   //File
   void onNew();
+  void onOpen();
+  void onSave();
+  void onSaveAll();
+  void onClose();
+  void onCloseAll();
   void onQuit();
 
-  //Test
-  void onTest1();
-  void onGenAtlasDb();
+  //Edit
+  void onEditBirthData();
+
+  //Tools
+  void onOptions();
 
   //Help
   void onHelp();
   void onAbout();
 
+  //Test
+  void onTest1();
+  void onGenAtlasDb();
+
 private:
-  void init();
-  void createMenus();
-  void createActions();
+  void createMenuBar();
+  void createToolBar();
+  void createMdiArea();
+  void createStatusBar();
+
+  void createFileMenu();
+  void createEditMenu();
+  void createToolsMenu();
+  void createHelpMenu();
+  void createTestMenu();
 
 private:
   NcPimplMainWindow* d;

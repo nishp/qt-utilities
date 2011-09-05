@@ -201,11 +201,9 @@ void NcFormPersonDataEntry::getData(NcPerson *person)
   NcEvent* event = person->birthEvent();
   NcLocation* loc = event->location();
 
-  //QDate date(2011,11,11);
-  //QTime time(11,11,11);
+  QDate date(2011,11,11);
+  QTime time(11,11,11);
 
-  QDate date(1983,10,25);
-  QTime time(21,00,0);
 
   QDateTime dt(date,time);
   //dt.addSecs(5.5*3600);
