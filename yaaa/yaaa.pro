@@ -27,7 +27,8 @@ HEADERS += src/core/NcEvent.h \
     src/adapter/NcMaitreyaAdapter.h \
     src/core/NcPersonFile.h \
     src/core/NcMtTextClient.h \
-    src/core/NcText.h
+    src/core/NcText.h \
+    src/gui/NcMdiSubWindow.h
 SOURCES += src/core/NcEvent.cpp \
            src/core/NcLocation.cpp \
            src/core/NcPerson.cpp \
@@ -39,7 +40,10 @@ SOURCES += src/core/NcEvent.cpp \
     src/adapter/NcMaitreyaAdapter.cpp \
     src/core/NcPersonFile.cpp \
     src/core/NcMtTextClient.cpp \
-    src/core/NcText.cpp
+    src/core/NcText.cpp \
+    src/gui/NcMdiSubWindow.cpp
+
+
 
 
 
