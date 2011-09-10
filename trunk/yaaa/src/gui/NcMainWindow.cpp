@@ -6,6 +6,7 @@
 #include "NcEvent.h"
 #include "NcPersonFile.h"
 #include "NcMdiSubWindow.h"
+#include "NcAtlas.h"
 
 class NcPimplMainWindow
 {
@@ -96,6 +97,7 @@ void NcMainWindow::createToolBar()
   //btn->setMenu(d->menuMain);
   //toolbar->addWidget(btn);
   toolbar->addAction(d->actNew);
+  toolbar->addAction(d->actGenAtlasDb);
 }
 
 void NcMainWindow::createMdiArea()
@@ -309,14 +311,23 @@ void NcMainWindow::onTest1()
 
 void NcMainWindow::onGenAtlasDb()
 {
-  QMessageBox::information(this,Q_FUNC_INFO,Q_FUNC_INFO);
-  return;
+  //QMessageBox::information(this,Q_FUNC_INFO,Q_FUNC_INFO);
+  //return;
 
   QString srcPath = QCoreApplication::applicationDirPath();
   QString destPath = srcPath;
 
   srcPath += "/data/atlas/raw";
   destPath += "/data/atlas/db";
+
+  QString path = "/home/nish/svn-google/qt-utilities/yaaa/data/atlas";
+
+  QFile().remove(path+"/atlas.db");
+
+  NcAtlas(path+"/atlas.db").cities1000ToDb(path);
+  QMessageBox::information(this,tr("Success"),tr("Done"));
+  qApp->quit();
+
 
 //  AtlasGenerator ag;
 //  if(ag.generateDatabase(srcPath, destPath))
