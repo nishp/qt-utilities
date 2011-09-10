@@ -15,6 +15,8 @@ DEFINES += _FILE_OFFSET_BITS=64 _LARGE_FILES __WXGTK__
 
 include(src/maitreya/maitreya.pri)
 
+QT += sql
+
 # Input
 HEADERS += src/core/NcEvent.h \
            src/core/NcLocation.h \
@@ -28,7 +30,8 @@ HEADERS += src/core/NcEvent.h \
     src/core/NcPersonFile.h \
     src/core/NcMtTextClient.h \
     src/core/NcText.h \
-    src/gui/NcMdiSubWindow.h
+    src/gui/NcMdiSubWindow.h \
+    src/core/NcAtlas.h
 SOURCES += src/core/NcEvent.cpp \
            src/core/NcLocation.cpp \
            src/core/NcPerson.cpp \
@@ -41,7 +44,10 @@ SOURCES += src/core/NcEvent.cpp \
     src/core/NcPersonFile.cpp \
     src/core/NcMtTextClient.cpp \
     src/core/NcText.cpp \
-    src/gui/NcMdiSubWindow.cpp
+    src/gui/NcMdiSubWindow.cpp \
+    src/core/NcAtlas.cpp
+
+
 
 
 
